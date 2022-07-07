@@ -3,10 +3,10 @@ import "./Header.css";
 
 function Header({ children }) {
   return (
-    <div className="header">
+    <header className="header">
       <span className="header__site-name">News Explorer</span>
         {children}
-    </div>
+    </header>
   );
 }
 export default Header;

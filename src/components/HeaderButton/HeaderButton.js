@@ -6,7 +6,7 @@ import blackSignOutIcon from "../../images/sign-out-black.svg";
 function HeaderButton({ loggedIn }) {
   return loggedIn ? (
     <button className="header-button">
-      <span className="header-button__user-name">Name</span>
+      <span className="header-button__user-name">Oleg</span>
       <img src={whiteSignOutIcon} alt="sign out icon" />
     </button>
   ) : (

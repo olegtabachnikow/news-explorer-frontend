@@ -5,7 +5,7 @@ import facebookIcon from "../../images/facebook-icon.svg";
 
 function Footer() {
   return (
-    <div className="footer">
+    <footer className="footer">
       <span className="footer__text">
         &copy; {new Date().getFullYear()} SuperSite, Powered by News API
       </span>
@@ -25,7 +25,7 @@ function Footer() {
           <img src={facebookIcon} alt="facebook icon" />
         </a>
       </div>
-    </div>
+    </footer>
   );
 }
 export default Footer;

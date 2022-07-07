@@ -1,11 +1,8 @@
 .main {
-  margin: 0 auto;
   width: 100%;
   color: #fff;
-}
-.main__content {
-    margin: 80px auto;
-    max-width: 608px;
+  margin: 80px auto;
+  max-width: 608px;
 }
 .main__title {
   font-family: "Roboto Slab", sans-serif;
@@ -14,6 +11,7 @@
   font-size: 60px;
   line-height: 64px;
   margin: 0;
+  user-select: none;
 }
 .main__subtitle {
   font-family: "Roboto";
@@ -22,4 +20,5 @@
   font-size: 18px;
   line-height: 24px;
   margin: 32px 0 88px 0;
+  user-select: none;
 }
