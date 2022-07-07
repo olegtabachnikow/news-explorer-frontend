@@ -1,0 +1,24 @@
+.navigation {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.navigation__page-button {
+    padding: 0 20px;
+    min-width: 68px;
+    height: 79px;
+    color: inherit;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    transition: border .3s ease;
+}
+.navigation__page-button:hover {
+    cursor: pointer;
+    border-bottom: 3px solid #fff;
+}

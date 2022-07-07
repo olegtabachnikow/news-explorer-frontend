@@ -1,0 +1,20 @@
+.header {
+    min-height: 79px;
+    border-bottom: 1px solid rgba(196, 196, 196, 0.01);
+    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    padding: 0 104px;
+}
+.header__site-name {
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    cursor: pointer;
+}
+.header_color_black {
+    color: #000;
+}
