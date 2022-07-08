@@ -12,6 +12,8 @@
   outline: none;
   width: 85%;
   border: none;
+  border: 1px solid #d1d2d6;
+  backdrop-filter: blur(8px);
 }
 .search-form__input::placeholder {
   color: #b6bcbf;

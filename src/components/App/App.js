@@ -6,10 +6,12 @@ import HeaderButton from "../HeaderButton/HeaderButton";
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
 import About from "../About/About";
+import NewsCardList from "../NewsCardList/NewsCardList";
+import NewsCard from "../NewsCard/NewsCard";
 import Footer from "../Footer/Footer";
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
   return (
     <div className="app">
       <Header>
@@ -20,7 +22,12 @@ function App() {
       <Main>
         <SearchForm />
       </Main>
-<About />
+      <NewsCardList>
+        <NewsCard loggedIn={loggedIn} />
+        <NewsCard loggedIn={loggedIn} />
+        <NewsCard loggedIn={loggedIn} />
+      </NewsCardList>
+      <About />
       <Footer />
     </div>
   );
