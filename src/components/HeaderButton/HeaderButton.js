@@ -3,11 +3,11 @@ import "./HeaderButton.css";
 import whiteSignOutIcon from "../../images/sign-out-white.svg";
 import blackSignOutIcon from "../../images/sign-out-black.svg";
 
-function HeaderButton({ loggedIn }) {
+function HeaderButton({ loggedIn, theme }) {
   return loggedIn ? (
-    <button className="header-button">
+    <button className={`header-button ${!theme && 'header-button_black'}`}>
       <span className="header-button__user-name">Oleg</span>
-      <img src={whiteSignOutIcon} alt="sign out icon" />
+      <img src={theme ? whiteSignOutIcon : blackSignOutIcon} alt="sign out icon" />
     </button>
   ) : (
     <button className="header-button">

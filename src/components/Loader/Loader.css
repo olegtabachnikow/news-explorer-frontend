@@ -1,0 +1,19 @@
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+}
+.loader__title {
+    color: #1A1B22;
+    margin: 40px 0 16px 0;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 26px;
+    line-height: 30px;
+}
+.loader__text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    color: #B6BCBF;
+}

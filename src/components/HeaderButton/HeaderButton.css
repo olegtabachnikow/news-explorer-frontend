@@ -11,8 +11,12 @@
     padding: 12px 19px;
     margin-left: 20px;
 }
-.header-button_color_white {
-    border: 1px solid #fff;
+.header-button_black {
+    border: 1px solid #D1D2D6;
+    transition: border .2s linear;
+}
+.header-button_black:hover{
+    border: 1px solid #1A1B22;
 }
 .header-button__user-name {
     margin-right: 19px;

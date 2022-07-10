@@ -1,6 +1,9 @@
 .main {
   width: 100%;
   color: #fff;
+  max-width: 1440px;
+}
+.main__form-box {
   margin: 80px auto;
   max-width: 608px;
 }
@@ -12,6 +15,7 @@
   line-height: 64px;
   margin: 0;
   user-select: none;
+
 }
 .main__subtitle {
   font-family: "Roboto";

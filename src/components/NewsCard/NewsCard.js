@@ -2,30 +2,40 @@ import React from "react";
 import "./NewsCard.css";
 import flagIcon from "../../images/flag-icon.svg";
 import flagIconMarked from "../../images/flag-icon-marked.svg";
+import trashIcon from '../../images/trash.svg';
+import { useLocation } from "react-router-dom";
 
 function NewsCard({ loggedIn }) {
+  const location = useLocation();
   const [isMarked, setIsMarked] = React.useState(false);
-  const [loginReminder, setLoginReminder] = React.useState(false);
+  const [reminder, setReminder] = React.useState(false);
+
   React.useEffect(() => {
     const fadeOut =
-      loginReminder &&
+      reminder &&
       setTimeout(() => {
-        setLoginReminder(false);
+        setReminder(false);
       }, 3000);
     return () => clearTimeout(fadeOut);
-  }, [loginReminder]);
-  function handleClick() {
-    loggedIn ? setIsMarked((isMarked) => !isMarked) : setLoginReminder(true);
+  }, [reminder]);
+
+  function handleMarkClick() {
+    loggedIn ? setIsMarked((isMarked) => !isMarked) : setReminder(true);
   }
   return (
     <article className="news-card">
-      {loginReminder && (
+      {location.pathname !== '/' && <div className="news-card__keyword button-style">Doge</div>}
+      {reminder && (
         <div className="news-card__reminder button-style">
-          Sign in to save articles
+          {location.pathname === '/' ? 'Sign in to save articles' : 'Remove from saved'}
         </div>
       )}
-      <button onClick={handleClick} className="news-card__button button-style">
-        {!isMarked ? (
+      <button
+        onClick={handleMarkClick}
+        className="news-card__button button-style"
+      >
+        {location.pathname === '/' ?
+        !isMarked ? (
           <img className="news-card__flag" src={flagIcon} alt="flag icon" />
         ) : (
           <img
@@ -33,7 +43,7 @@ function NewsCard({ loggedIn }) {
             src={flagIconMarked}
             alt="blue flag icon"
           />
-        )}
+        ) : (<img className="news-card__trash" src={trashIcon} alt="trash icon"/>)}
       </button>
       <img
         className="news-card__image"

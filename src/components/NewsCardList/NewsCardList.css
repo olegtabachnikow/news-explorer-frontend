@@ -4,11 +4,12 @@
   flex-direction: column;
   padding: 80px 104px;
   background-color: #f5f6f7;
+  position: relative;
 }
 .news-card-list__container {
   display: flex;
-  margin: 64px 0;
-  justify-content: space-between;
+  gap: 16px;
+  margin: 64px auto;
 }
 .news-card-list__title {
   font-family: "Roboto Slab", sans-serif;

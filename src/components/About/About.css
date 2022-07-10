@@ -1,6 +1,7 @@
 .about {
   display: flex;
   padding: 80px 106px;
+  color:  #1A1B22;
 }
 .about__image {
   max-width: 464px;
