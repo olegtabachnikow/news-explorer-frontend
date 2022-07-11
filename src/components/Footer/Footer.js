@@ -9,22 +9,41 @@ function Footer() {
       <span className="footer__text">
         &copy; {new Date().getFullYear()} SuperSite, Powered by News API
       </span>
-      <div className="footer__navigation">
-        <a className="footer__link" href="/">Home</a>
-        <a className="footer__link"
-          href="https://practicum.com/en-isr/?gclid=CjwKCAjwiJqWBhBdEiwAtESPaG-Yi1Douzg3PoUTqXMKp5X99BpuXWF7q_i6Hnj39Tn6cHvfDjfQURoCDtcQAvD_BwE"
-          rel="noreferrer"
-          target="_blank"
-        >
-          Practicum by Yandex
-        </a>
-        <a className="footer__link footer__link-social" href="https://github.com/Eskel4ik" rel="noreferrer" target="_blank">
-          <img src={githubIcon} alt="github icon" />
-        </a>
-        <a className="footer__link footer__link-social" href="https://www.facebook.com/eskel4ik" rel="noreferrer" target="_blank">
-          <img src={facebookIcon} alt="facebook icon" />
-        </a>
-      </div>
+      <nav className="footer__navigation">
+        <div className="footer__link-box">
+        <div className="footer__text-link-box">
+          <a className="footer__link" href="/">
+            Home
+          </a>
+          <a
+            className="footer__link"
+            href="https://practicum.com/en-isr/?gclid=CjwKCAjwiJqWBhBdEiwAtESPaG-Yi1Douzg3PoUTqXMKp5X99BpuXWF7q_i6Hnj39Tn6cHvfDjfQURoCDtcQAvD_BwE"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Practicum by Yandex
+          </a>
+        </div>
+        <div className="footer__social-box">
+          <a
+            className="footer__link footer__link-social"
+            href="https://github.com/Eskel4ik"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <img src={githubIcon} alt="github icon" />
+          </a>
+          <a
+            className="footer__link footer__link-social"
+            href="https://www.facebook.com/eskel4ik"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <img src={facebookIcon} alt="facebook icon" />
+          </a>
+          </div>
+        </div>
+      </nav>
     </footer>
   );
 }

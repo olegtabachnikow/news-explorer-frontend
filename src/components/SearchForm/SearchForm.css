@@ -46,3 +46,24 @@
       height: 56px;
   }
 }
+@media screen and (max-width: 600px) {
+  .search-form {
+      height: 128px;
+      flex-direction: row;
+      flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 600px) {
+  .search-form__input {
+      height: 56px;
+      width: 100%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .search-form__button {
+      position: static;
+      height: 56px;
+      width: 100%;
+      margin-top: 16px;
+  }
+}

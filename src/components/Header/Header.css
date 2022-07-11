@@ -1,29 +1,86 @@
 .header {
-    min-height: 79px;
-    border-bottom: 1px solid rgba(196, 196, 196, 0.01);
-    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #fff;
-    padding: 0 104px;
+  min-height: 79px;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  padding: 0 104px;
 }
 .header__site-name {
-    font-family: 'Roboto Slab', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
-    cursor: pointer;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
 }
 .header_black {
-    color: #000;
-    box-shadow: inset 0px -1px 0px #D1D2D6;
+  color: #000;
+  box-shadow: inset 0px -1px 0px #d1d2d6;
 }
-
+.header_background_dark {
+  background-color: #1a1b22;
+}
+.header_background_light {
+  background-color: #fff;
+}
+.header__popup-button {
+  display: none;
+  position: relative;
+  width: 16px;
+  height: 2px;
+  border: none;
+  background-color: #fff;
+  margin-bottom: 4px;
+  z-index: 10;
+  transition: all 0.5s ease-in-out;
+}
+.header__popup-button::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 16px;
+  height: 2px;
+  display: block;
+  background-color: #fff;
+  transition: all 0.25s ease-in;
+}
+.header__popup-button_dark {
+  background-color: #1a1b22;
+}
+.header__popup-button_dark:after {
+  background-color: #1a1b22;
+}
+.animated {
+  transform: rotate(135deg);
+}
+.animated:after {
+  transform: rotate(90deg);
+  top: 0;
+}
 @media screen and (max-width: 768px) {
-    .header {
-        min-height: 65px;
-        padding: 0 40px;
-    }
+  .header {
+    min-height: 65px;
+    padding: 0 40px;
+  }
 }
-
+@media screen and (max-width: 600px) {
+  .header {
+    width: 100%;
+    padding: 0 20px 0 16px;
+    position: relative;
+  }
+}
+@media screen and (max-width: 600px) {
+  .header__popup-button {
+    display: block;
+  }
+}
+@media screen and (max-width: 600px) {
+  .header__site-name {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
