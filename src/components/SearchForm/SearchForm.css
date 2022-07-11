@@ -41,3 +41,8 @@
 .search-form__button:active {
   background-color: #2a65cc;
 }
+@media screen and (max-width: 768px) {
+  .search-form {
+      height: 56px;
+  }
+}

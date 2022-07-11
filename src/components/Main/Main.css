@@ -26,3 +26,19 @@
   margin: 32px 0 88px 0;
   user-select: none;
 }
+@media screen and (max-width: 768px) {
+  .main__form-box {
+     max-width: 448px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main__title {
+     font-size: 36px;
+     line-height: 40px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main__subtitle {
+     margin: 16px 0 48px 0;
+  }
+}

@@ -1,8 +1,14 @@
 .saved-news__cards {
-    color: #1a1b22;
-    display: flex;
-    flex-wrap: wrap;
-    gap:16px;
-    padding: 62px 102px;
-    background-color: #f5f6f7;
+  color: #1a1b22;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 62px 102px;
+  background-color: #f5f6f7;
+}
+@media screen and (max-width: 768px) {
+  .saved-news__cards {
+    gap: 8px;
+    padding: 32px 39px;
+  }
 }

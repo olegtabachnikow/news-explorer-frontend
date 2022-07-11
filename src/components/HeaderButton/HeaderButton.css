@@ -1,4 +1,6 @@
 .header-button {
+    font-size: 18px;
+    line-height: 24px;
     outline: none;
     background-color: transparent;
     color: inherit;
@@ -24,4 +26,11 @@
 .header-button__signin {
     width: 150px;
     margin-right: 0;
+}
+@media screen and (max-width: 768px) {
+    .header-button {
+       font-size: 16px;
+       height: 40px;
+       padding: 8px 12px;
+    }
 }
