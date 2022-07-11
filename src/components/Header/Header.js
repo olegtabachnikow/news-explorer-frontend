@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
-function Header({ children, theme, isOpen, openPopup }) {
+function Header({ children, theme, isOpen, openPopup, hidden }) {
   const navigate = useNavigate();
   function handleClick() {
     isOpen ? openPopup(false) : openPopup(true);
@@ -11,7 +11,7 @@ function Header({ children, theme, isOpen, openPopup }) {
     <header
       className={`header ${
         isOpen && (theme ? "header_background_dark" : "header_background_light")
-      } ${!theme && "header_black"}`}
+      } ${!theme && "header_black"} ${hidden && "header__hidden"}`}
     >
       <span onClick={() => navigate("/")} className="header__site-name">
         News Explorer

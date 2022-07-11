@@ -7,6 +7,7 @@
   justify-content: space-between;
   color: #fff;
   padding: 0 104px;
+  z-index: 10;
 }
 .header__site-name {
   font-family: "Roboto Slab", sans-serif;
@@ -69,6 +70,7 @@
 @media screen and (max-width: 600px) {
   .header {
     width: 100%;
+    min-height: 56px;
     padding: 0 20px 0 16px;
     position: relative;
   }
@@ -82,5 +84,10 @@
   .header__site-name {
     font-size: 16px;
     line-height: 24px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .header__hidden {
+    visibility: hidden;
   }
 }

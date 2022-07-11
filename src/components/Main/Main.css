@@ -15,7 +15,6 @@
   line-height: 64px;
   margin: 0;
   user-select: none;
-
 }
 .main__subtitle {
   font-family: "Roboto";
@@ -28,28 +27,28 @@
 }
 @media screen and (max-width: 768px) {
   .main__form-box {
-     max-width: 448px;
-     padding: 0 16px;
+    max-width: 448px;
+    padding: 0 16px;
   }
 }
 @media screen and (max-width: 768px) {
   .main__title {
-     font-size: 36px;
-     line-height: 40px;
+    font-size: 36px;
+    line-height: 40px;
   }
 }
 @media screen and (max-width: 768px) {
   .main__subtitle {
-     margin: 16px 0 48px 0;
+    margin: 16px 0 48px 0;
   }
 }
 @media screen and (max-width: 600px) {
   .main__form-box {
-     margin: 30px auto 32px auto;
+    margin: 30px auto 32px auto;
   }
 }
 @media screen and (max-width: 600px) {
   .main__subtitle {
-     margin: 16px 0 122px 0;
+    margin: 16px 0 122px 0;
   }
 }

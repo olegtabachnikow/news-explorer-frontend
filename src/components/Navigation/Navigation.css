@@ -33,10 +33,10 @@
   border-bottom: 3px solid #1a1b22;
 }
 .navigation_background_light {
-    background-color: #fff;
+  background-color: #fff;
 }
 .navigation_background_dark {
-    background-color: #1a1b22;
+  background-color: #1a1b22;
 }
 @media screen and (max-width: 768px) {
   .navigation__page-button {
@@ -52,8 +52,8 @@
     position: absolute;
     width: 100%;
     left: 0;
-    top: 64px;
-    padding: 16px;
+    top: 56px;
+    padding: 16px 16px 24px 16px;
   }
 }
 @media screen and (max-width: 600px) {

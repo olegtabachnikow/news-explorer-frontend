@@ -2,7 +2,7 @@ import React from "react";
 import "./NewsCard.css";
 import flagIcon from "../../images/flag-icon.svg";
 import flagIconMarked from "../../images/flag-icon-marked.svg";
-import trashIcon from '../../images/trash.svg';
+import trashIcon from "../../images/trash.svg";
 import { useLocation } from "react-router-dom";
 
 function NewsCard({ loggedIn }) {
@@ -24,26 +24,33 @@ function NewsCard({ loggedIn }) {
   }
   return (
     <article className="news-card">
-      {location.pathname !== '/' && <div className="news-card__keyword button-style">Doge</div>}
+      {location.pathname !== "/" && (
+        <div className="news-card__keyword button-style">Doge</div>
+      )}
       {reminder && (
         <div className="news-card__reminder button-style">
-          {location.pathname === '/' ? 'Sign in to save articles' : 'Remove from saved'}
+          {location.pathname === "/"
+            ? "Sign in to save articles"
+            : "Remove from saved"}
         </div>
       )}
       <button
         onClick={handleMarkClick}
         className="news-card__button button-style"
       >
-        {location.pathname === '/' ?
-        !isMarked ? (
-          <img className="news-card__flag" src={flagIcon} alt="flag icon" />
+        {location.pathname === "/" ? (
+          !isMarked ? (
+            <img className="news-card__flag" src={flagIcon} alt="flag icon" />
+          ) : (
+            <img
+              className="news-card__flag_marked"
+              src={flagIconMarked}
+              alt="blue flag icon"
+            />
+          )
         ) : (
-          <img
-            className="news-card__flag_marked"
-            src={flagIconMarked}
-            alt="blue flag icon"
-          />
-        ) : (<img className="news-card__trash" src={trashIcon} alt="trash icon"/>)}
+          <img className="news-card__trash" src={trashIcon} alt="trash icon" />
+        )}
       </button>
       <img
         className="news-card__image"
