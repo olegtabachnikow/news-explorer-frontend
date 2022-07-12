@@ -19,13 +19,13 @@
   transition: border 0.3s ease;
   cursor: pointer;
 }
-.navigation_main_active {
+.navigation_active {
   border-bottom: 3px solid #fff;
 }
-.navigation_path_inactive {
+.navigation_inactive {
   color: #b6bcbf;
 }
-.navigation_path_inactive:hover {
+.navigation_inactive:hover {
   color: #fff;
 }
 .navigation_path_active {

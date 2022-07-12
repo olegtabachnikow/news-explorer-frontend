@@ -8,31 +8,14 @@ import { useLocation } from "react-router-dom";
 function NewsCard({ loggedIn }) {
   const location = useLocation();
   const [isMarked, setIsMarked] = React.useState(false);
-  const [reminder, setReminder] = React.useState(false);
-
-  React.useEffect(() => {
-    const fadeOut =
-      reminder &&
-      setTimeout(() => {
-        setReminder(false);
-      }, 3000);
-    return () => clearTimeout(fadeOut);
-  }, [reminder]);
 
   function handleMarkClick() {
-    loggedIn ? setIsMarked((isMarked) => !isMarked) : setReminder(true);
+    loggedIn && setIsMarked((isMarked) => !isMarked);
   }
   return (
     <article className="news-card">
       {location.pathname !== "/" && (
         <div className="news-card__keyword button-style">Doge</div>
-      )}
-      {reminder && (
-        <div className="news-card__reminder button-style">
-          {location.pathname === "/"
-            ? "Sign in to save articles"
-            : "Remove from saved"}
-        </div>
       )}
       <button
         onClick={handleMarkClick}
@@ -52,6 +35,11 @@ function NewsCard({ loggedIn }) {
           <img className="news-card__trash" src={trashIcon} alt="trash icon" />
         )}
       </button>
+      <div className="news-card__reminder button-style">
+        {location.pathname === "/"
+          ? "Sign in to save articles"
+          : "Remove from saved"}
+      </div>
       <img
         className="news-card__image"
         src="https://cloudfront-us-east-1.images.arcpublishing.com/coindesk/XA6KIXE6FBFM5EWSA25JI5YAU4.jpg"

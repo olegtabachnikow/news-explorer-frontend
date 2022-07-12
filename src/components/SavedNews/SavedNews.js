@@ -12,12 +12,14 @@ function SavedNews({ loggedIn }) {
   return (
     <section className="saved-news">
       <SavedNewsHeader />
+      <div className="saved-news__content">
       <div className="saved-news__cards">
         <NewsCard />
         <NewsCard />
         <NewsCard />
         <NewsCard />
         <NewsCard />
+      </div>
       </div>
     </section>
   );

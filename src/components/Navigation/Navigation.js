@@ -21,7 +21,7 @@ function Navigation({ children, loggedIn, theme, isOpen, onClose }) {
     >
       <button
         className={`navigation__page-button  ${
-          theme && "navigation_main_active"
+          theme && "navigation_active"
         }`}
         onClick={redirectToMain}
       >
@@ -30,7 +30,7 @@ function Navigation({ children, loggedIn, theme, isOpen, onClose }) {
       {loggedIn && (
         <button
           className={`navigation__page-button  ${
-            theme ? "navigation_path_inactive" : "navigation_path_active"
+            theme ? "navigation_inactive" : "navigation_path_active"
           }`}
           onClick={redirectToNews}
         >

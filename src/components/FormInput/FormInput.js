@@ -12,6 +12,7 @@ function FormInput({ type, name, placeholder }) {
         type={type}
         name={name.toLowerCase()}
         placeholder={`Enter ${placeholder}`}
+        required
       />
       <span className={`form__input-error error-${name.toLowerCase()}`}>
         bla bla bla
