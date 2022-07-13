@@ -1,0 +1,6 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/inter/inter.css);
+@import url(./vendor/fonts/roboto/roboto.css);
+* {
+    box-sizing: border-box;
+}
