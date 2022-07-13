@@ -8,8 +8,15 @@
 }
 .news-card-list__container {
   display: flex;
-  gap: 16px;
-  margin: 64px auto 48px auto;
+  flex-direction: column;
+  justify-content: center;
+  margin: 32px 0 16px 0;
+}
+.news-card-list__cards {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.1%;
+  justify-content: center;
 }
 .news-card-list__title {
   font-family: "Roboto Slab", sans-serif;
@@ -44,7 +51,6 @@
 }
 @media screen and (max-width: 768px) {
   .news-card-list__container {
-    margin: 32px 0;
     gap: 8px;
   }
 }

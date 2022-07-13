@@ -10,7 +10,9 @@ function NewsCardList({ children, isSearching, isFailed }) {
       ) : (
         <>
           <h2 className="news-card-list__title">Search results</h2>
-          <div className="news-card-list__container">{children}</div>
+          <div className="news-card-list__container">
+            <div className="news-card-list__cards">{children}</div>
+          </div>
           <button className="news-card-list__button">Show more</button>
         </>
       )}

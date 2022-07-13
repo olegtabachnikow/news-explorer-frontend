@@ -22,6 +22,7 @@ function Main({ loggedIn }) {
         <NewsCard loggedIn={loggedIn} />
         <NewsCard loggedIn={loggedIn} />
         <NewsCard loggedIn={loggedIn} />
+        <NewsCard loggedIn={loggedIn} />
       </NewsCardList>
       <About />
     </section>

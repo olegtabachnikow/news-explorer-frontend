@@ -21,7 +21,7 @@ function Navigation({ children, loggedIn, theme, isOpen, onClose }) {
     >
       <button
         className={`navigation__page-button  ${
-          theme && "navigation_active"
+          theme && "navigation__page-button_active"
         }`}
         onClick={redirectToMain}
       >

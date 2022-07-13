@@ -19,7 +19,7 @@
   transition: border 0.3s ease;
   cursor: pointer;
 }
-.navigation_active {
+.navigation__page-button_active {
   border-bottom: 3px solid #fff;
 }
 .navigation_inactive {

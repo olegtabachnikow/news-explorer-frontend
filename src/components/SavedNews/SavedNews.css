@@ -4,20 +4,23 @@
 }
 .saved-news__cards {
   display: flex;
-  gap: 1.4%;
-  margin: 0 auto;
+  column-gap: 1.1%;
   flex-wrap: wrap;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  .saved-news__content {
+    padding: 32px 39px;
+  }
 }
 @media screen and (max-width: 768px) {
   .saved-news__cards {
-    justify-content: center;
-    gap: 8px;
-    padding: 32px 39px;
+    column-gap: 8px;
   }
 }
 @media screen and (max-width: 600px) {
   .saved-news__cards {
     padding: 24px 16px 13px 16px;
-    gap: 11px;
+    column-gap: 11px;
   }
 }
