@@ -5,10 +5,28 @@ import flagIconMarked from "../../images/flag-icon-marked.svg";
 import trashIcon from "../../images/trash.svg";
 import { useLocation } from "react-router-dom";
 
-function NewsCard({ loggedIn }) {
+function NewsCard({ loggedIn, card }) {
   const location = useLocation();
   const [isMarked, setIsMarked] = React.useState(false);
-
+  function formatDate(date) {
+    const dateArr = date.toString().slice(0, 10).split("-", 3);
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    dateArr[1] = monthNames[parseInt(dateArr[1]) - 1];
+    return `${dateArr[1]} ${dateArr[2]}, ${dateArr[0]}`;
+  }
   function handleMarkClick() {
     loggedIn && setIsMarked((isMarked) => !isMarked);
   }
@@ -42,21 +60,14 @@ function NewsCard({ loggedIn }) {
       </div>
       <img
         className="news-card__image"
-        src="https://cloudfront-us-east-1.images.arcpublishing.com/coindesk/XA6KIXE6FBFM5EWSA25JI5YAU4.jpg"
-        alt="kakoy to alt"
+        src={card.urlToImage}
+        alt={card.source.name}
       />
       <div className="news-card__info">
-        <span className="news-card__date">November 2, 2002</span>
-        <h2 className="news-card__title">
-          Everyone Needs a Special 'Sit Spot' in Nature
-        </h2>
-        <p className="news-card__text">
-          Ever since I read Richard Louv's influential book, "Last Child in the
-          Woods," the idea of having a special "sit spot" has stuck with me.
-          This advice, which Louv attributes to nature educator Jon Young, is
-          for both adults and children to find...
-        </p>
-        <span className="news-card__source">treehunger</span>
+        <span className="news-card__date">{formatDate(card.publishedAt)}</span>
+        <h2 className="news-card__title">{card.title}</h2>
+        <p className="news-card__text">{card.description}</p>
+        <span className="news-card__source">{card.source.name}</span>
       </div>
     </article>
   );

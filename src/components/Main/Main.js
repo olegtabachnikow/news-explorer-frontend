@@ -5,7 +5,16 @@ import NewsCardList from "../NewsCardList/NewsCardList";
 import NewsCard from "../NewsCard/NewsCard";
 import About from "../About/About";
 
-function Main({ loggedIn }) {
+function Main({
+  searchErrorMessage,
+  isOpen,
+  onSearch,
+  searchResult,
+  articles,
+  handleCount,
+  showMoreButton,
+  cardsCount
+}) {
   return (
     <section className="main">
       <div className="main__form-box">
@@ -14,15 +23,18 @@ function Main({ loggedIn }) {
           Find the latest news on any topic and save them in your personal
           account.
         </h2>
-        <SearchForm />
+        <SearchForm onSearch={onSearch} />
       </div>
-      <NewsCardList isSearching={true} isFailed={true} />
-      <NewsCardList isSearching={true} isFailed={false} />
-      <NewsCardList isSearching={false} isFailed={false}>
-        <NewsCard loggedIn={loggedIn} />
-        <NewsCard loggedIn={loggedIn} />
-        <NewsCard loggedIn={loggedIn} />
-        <NewsCard loggedIn={loggedIn} />
+      <NewsCardList
+        isOpen={isOpen}
+        searchResult={searchResult}
+        searchErrorMessage={searchErrorMessage}
+        articles={articles}
+        handleCount={handleCount}
+        showMoreButton={showMoreButton}
+      >
+        {articles.length &&
+          articles.slice(0, cardsCount).map((card, i) => <NewsCard key={i} card={card} />)}
       </NewsCardList>
       <About />
     </section>

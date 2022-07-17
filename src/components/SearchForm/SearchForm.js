@@ -1,9 +1,15 @@
 import React from "react";
 import "./SearchForm.css";
 
-function SearchForm() {
+function SearchForm({ onSearch }) {
+const [keyword, setKeyword] = React.useState('');
+function handleChange(evt) {
+  setKeyword(evt.target.value);
+}
   function handleSubmit(evt) {
     evt.preventDefault();
+    onSearch(keyword);
+    setKeyword('');
   }
   return (
     <form
@@ -14,6 +20,8 @@ function SearchForm() {
       onSubmit={handleSubmit}
     >
       <input
+      onChange={handleChange}
+      value={keyword || ''}
         className="search-form__input"
         type="text"
         placeholder="Enter topic"
