@@ -119,7 +119,7 @@
 .news-card__button:hover .news-card__trash {
   opacity: 1;
 }
-.news-card__button:hover + .news-card__reminder {
+.news-card__button_disabled:hover + .news-card__reminder {
   display: flex;
 }
 @media screen and (max-width: 900px) {

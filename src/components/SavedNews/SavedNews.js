@@ -4,7 +4,7 @@ import "./SavedNews.css";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import NewsCard from "../NewsCard/NewsCard";
 
-function SavedNews({ loggedIn }) {
+function SavedNews({ loggedIn, savedArticles }) {
   const navigate = useNavigate();
   React.useEffect(() => {
     !loggedIn && navigate("/");
@@ -14,11 +14,9 @@ function SavedNews({ loggedIn }) {
       <SavedNewsHeader />
       <div className="saved-news__content">
         <div className="saved-news__cards">
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
+          {savedArticles.length > 0 && savedArticles.map((card, i) => (
+            <NewsCard key={i} card={card}/>
+          ))}
         </div>
       </div>
     </section>

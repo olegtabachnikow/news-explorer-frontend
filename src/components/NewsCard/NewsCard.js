@@ -32,32 +32,34 @@ function NewsCard({ loggedIn, card }) {
   }
   return (
     <article className="news-card">
-      {location.pathname !== "/" && (
+      {location.pathname === "/saved-news" && (
         <div className="news-card__keyword button-style">Doge</div>
       )}
-      <button
-        onClick={handleMarkClick}
-        className="news-card__button button-style"
-      >
-        {location.pathname === "/" ? (
-          !isMarked ? (
-            <img className="news-card__flag" src={flagIcon} alt="flag icon" />
-          ) : (
-            <img
-              className="news-card__flag_marked"
-              src={flagIconMarked}
-              alt="blue flag icon"
-            />
-          )
-        ) : (
+      {location.pathname === "/" ? (
+        <>
+          <button
+            onClick={handleMarkClick}
+            className={`news-card__button button-style ${!loggedIn && 'news-card__button_disabled'}`}
+          >
+            {!isMarked ? (
+              <img className="news-card__flag" src={flagIcon} alt="flag icon" />
+            ) : (
+              <img
+                className="news-card__flag_marked"
+                src={flagIconMarked}
+                alt="blue flag icon"
+              />
+            )}
+          </button>
+          <div className="news-card__reminder button-style">
+            <span>Sign in to save articles</span>
+          </div>
+        </>
+      ) : (
+        <button className="news-card__button button-style">
           <img className="news-card__trash" src={trashIcon} alt="trash icon" />
-        )}
-      </button>
-      <div className="news-card__reminder button-style">
-        {location.pathname === "/"
-          ? "Sign in to save articles"
-          : "Remove from saved"}
-      </div>
+        </button>
+      )}
       <img
         className="news-card__image"
         src={card.urlToImage}

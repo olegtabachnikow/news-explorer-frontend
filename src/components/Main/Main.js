@@ -13,7 +13,8 @@ function Main({
   articles,
   handleCount,
   showMoreButton,
-  cardsCount
+  cardsCount,
+  loggedIn
 }) {
   return (
     <section className="main">
@@ -34,7 +35,7 @@ function Main({
         showMoreButton={showMoreButton}
       >
         {articles.length &&
-          articles.slice(0, cardsCount).map((card, i) => <NewsCard key={i} card={card} />)}
+          articles.slice(0, cardsCount).map((card, i) => <NewsCard key={i} card={card} loggedIn={loggedIn} />)}
       </NewsCardList>
       <About />
     </section>

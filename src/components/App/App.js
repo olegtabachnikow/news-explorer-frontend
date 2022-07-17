@@ -13,6 +13,7 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import RegisterResult from "../RegisterResult/RegisterResult";
 import FormInput from "../FormInput/FormInput";
 import newsApi from "../../utils/NewsApi";
+import { register, login, checkToken } from "../../utils/MainApi";
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -26,12 +27,25 @@ function App() {
   const [searchResult, setSearchResult] = React.useState(true);
   const [resultRegisterPopupOpen, setResultRegisterPopupOpen] =
     React.useState(false);
-  const [isSearching, setIsSearching] = React.useState(false);
   const [hideHeader, setHideHeader] = React.useState(true);
   const [isCardListOpen, setIsCardListOpen] = React.useState(false);
   const [cardsCount, setCardsCount] = React.useState(3);
   const [showMoreButton, setShowMoreButton] = React.useState(true);
+  const [savedArticles, setSavedArticles] = React.useState([]);
+  const [signError, setSignError] = React.useState("");
+
   const location = useLocation();
+  React.useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    token && checkToken(token)
+    .then(res => {
+      if (res.user) {
+       setCurrentUser(res.user);
+       setLoggedIn(true);
+      }
+    })
+    .catch(err => console.log(err));
+  },[])
   React.useEffect(() => {
     location.pathname === "/" ? setMainTheme(true) : setMainTheme(false);
   }, [location.pathname]);
@@ -55,7 +69,6 @@ function App() {
     setCardsCount((cardsCount) => (cardsCount += 3));
   }
   function getData(keyword) {
-    setIsSearching(true);
     setSearchResult(true);
     setIsCardListOpen(true);
     localStorage.removeItem("articles");
@@ -66,7 +79,6 @@ function App() {
       .getArticles(keyword)
       .then((res) => {
         !res.articles.length && setSearchResult(false);
-        setIsSearching(false);
         localStorage.setItem("articles", JSON.stringify(res.articles));
         setArticles(res.articles);
       })
@@ -77,20 +89,48 @@ function App() {
       );
   }
   function handleSignOut() {
+    localStorage.removeItem('jwt');
     setLoggedIn(false);
   }
-  function openRegisterResultPopup(boolean) {
-    closeAllPopups();
-    setHideHeader(true);
-    setResultRegisterPopupOpen(boolean);
-  }
   function openRegisterPopup(boolean) {
+    setSignError("");
     closeAllPopups();
     setHideHeader(true);
     setIsRegisterPopupOpen(boolean);
   }
+  function handleLogin(data) {
+    setSignError('');
+    login(data)
+      .then((res) => {
+        return res.json();
+      }).then(res => {
+        if (res.message) {
+          setSignError(res.message);
+          return;
+        }
+        res.token && localStorage.setItem("jwt", res.token);
+        setLoggedIn(true);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
+  function handleRegister(data) {
+    setSignError("");
+    register(data)
+      .then((res) => {
+        return res.json();
+      }).then(res =>  {
+        if (res.message) {
+          setSignError(res.message);
+          return;
+        }
+        closeAllPopups();
+        setResultRegisterPopupOpen(true);
+      })
+      .catch((err) => console.log(err));
+  }
   function openLoginPopup(boolean) {
-    setLoggedIn(true);
+    setSignError("");
     closeAllPopups();
     setHideHeader(true);
     setIsLoginPopupOpen(boolean);
@@ -145,17 +185,20 @@ function App() {
           />
           <Route
             path="/saved-news"
-            element={<SavedNews loggedIn={loggedIn} />}
+            element={
+              <SavedNews loggedIn={loggedIn} savedArticles={savedArticles} />
+            }
           />
         </Routes>
         <Popup isOpen={isBurgerPopupOpened} onClose={closeAllPopups} />
         <PopupWithForm
-          handleSubmitForm={openRegisterResultPopup}
           onOpen={openLoginPopup}
           isOpen={isRegisterPopupOpen}
           onClose={closeAllPopups}
           title="Sign up"
           buttonText="Sign in"
+          handleFormSubmit={handleRegister}
+          signError={signError}
         >
           <FormInput type="email" name="Email" placeholder="email" />
           <FormInput type="password" name="Password" placeholder="password" />
@@ -167,6 +210,8 @@ function App() {
           onClose={closeAllPopups}
           title="Sign in"
           buttonText="Sign up"
+          handleFormSubmit={handleLogin}
+          signError={signError}
         >
           <FormInput type="email" name="Email" placeholder="email" />
           <FormInput type="password" name="Password" placeholder="password" />

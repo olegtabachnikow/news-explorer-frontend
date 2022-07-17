@@ -56,8 +56,12 @@
 .form__submit-button_disabled {
   color: #b6bcbf;
   background-color: #e6e8eb;
-  cursor: none;
   box-shadow: none;
+}
+.form__submit-button_disabled:hover {
+  color: #b6bcbf;
+  background-color: #e6e8eb;
+  cursor: default;
 }
 .form__button-container {
   display: flex;

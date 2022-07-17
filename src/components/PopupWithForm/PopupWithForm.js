@@ -10,11 +10,14 @@ function PopupWithForm({
   isOpen,
   onClose,
   onOpen,
-  handleSubmitForm,
+  handleFormSubmit,
+  signError
 }) {
+  const [values, setValues] = React.useState({});
+  const [isValid, setIsValid] = React.useState(false);
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSubmitForm(true);
+    isValid && handleFormSubmit(values);
   }
   return (
     <Popup isOpen={isOpen} onClose={onClose}>
@@ -27,11 +30,15 @@ function PopupWithForm({
           />
         </button>
         <h2 className="form__title">{title}</h2>
-        {children}
-        <p className="form__error">The email is not available</p>
+        {React.Children.map(children, (child) =>
+          React.cloneElement(child, { setIsValid, setValues, values, isOpen })
+        )}
+        <p className="form__error">{signError}</p>
         <button
           onClick={handleSubmit}
-          className="form__submit-button"
+          className={`form__submit-button ${
+            !isValid && "form__submit-button_disabled"
+          }`}
           type="submit"
         >
           {title}
