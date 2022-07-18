@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://api.news-explorer-oleg.students.nomoredomainssbs.ru";
 function checkResponce(res) {
   if (res.ok) {
     return res.json();
