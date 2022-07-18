@@ -13,10 +13,12 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import RegisterResult from "../RegisterResult/RegisterResult";
 import FormInput from "../FormInput/FormInput";
 import newsApi from "../../utils/NewsApi";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import {
   register,
   login,
   checkToken,
+  getCurrentUser,
   getArticles,
   saveArticle,
   deleteArticle,
@@ -56,8 +58,16 @@ function App() {
   React.useEffect(() => {
     loggedIn &&
       getArticles()
+        .then((res) => { 
+          setCurrentUser(currentUser => ({...currentUser, articles: res }));
+        })
+        .catch((err) => console.log(err))
+  }, [loggedIn]);
+  React.useEffect(() => {
+    loggedIn &&
+      getCurrentUser()
         .then((res) => {
-          setCurrentUser({ ...currentUser, articles: [...res] });
+          setCurrentUser(currentUser => ({ ...currentUser, ...res.user }));
         })
         .catch((err) => console.log(err));
   }, [loggedIn]);
@@ -76,10 +86,17 @@ function App() {
       ? setShowMoreButton(false)
       : setShowMoreButton(true);
   }, [cardsCount, articles]);
+
   function removeArticle(id) {
     deleteArticle(id)
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+      .then(() => {
+        const arr = currentUser.articles.filter((item) => item._id !== id);
+        setCurrentUser({
+          ...currentUser,
+          articles: arr,
+        });
+      })
+      .catch((err) => console.log(err));
   }
   function openBurger(boolean) {
     setIsBurgerPopupOpened(boolean);
@@ -97,7 +114,6 @@ function App() {
     newsApi
       .getArticles(keyword)
       .then((res) => {
-        console.log(res);
         !res.articles.length && setSearchResult(false);
         localStorage.setItem("keyword", keyword);
         localStorage.setItem("articles", JSON.stringify(res.articles));
@@ -110,7 +126,6 @@ function App() {
       );
   }
   function addArticle(data) {
-    console.log(currentUser);
     const keyword = localStorage.getItem("keyword");
     saveArticle(keyword, { data })
       .then((res) => {
@@ -122,8 +137,10 @@ function App() {
       .catch((err) => console.log(err));
   }
   function handleSignOut() {
-    localStorage.removeItem("jwt");
     setLoggedIn(false);
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("articles");
+    setCurrentUser({});
   }
   function openRegisterPopup(boolean) {
     setSignError("");
@@ -216,13 +233,16 @@ function App() {
                 showMoreButton={showMoreButton}
                 cardsCount={cardsCount}
                 onCardSave={addArticle}
-                onCardDelete={removeArticle}
               />
             }
           />
           <Route
             path="/saved-news"
-            element={<SavedNews loggedIn={loggedIn} />}
+            element={
+              <ProtectedRoute loggedIn={loggedIn}>
+                <SavedNews onCardDelete={removeArticle} loggedIn={loggedIn} />
+              </ProtectedRoute>
+            }
           />
         </Routes>
         <Popup isOpen={isBurgerPopupOpened} onClose={closeAllPopups} />

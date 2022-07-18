@@ -36,7 +36,16 @@ function Main({
         showMoreButton={showMoreButton}
       >
         {articles.length &&
-          articles.slice(0, cardsCount).map((card, i) => <NewsCard key={i} card={card} loggedIn={loggedIn} onCardSave={onCardSave}/>)}
+          articles
+            .slice(0, cardsCount)
+            .map((card, i) => (
+              <NewsCard
+                key={i}
+                card={card}
+                loggedIn={loggedIn}
+                onCardSave={onCardSave}
+              />
+            ))}
       </NewsCardList>
       <About />
     </section>

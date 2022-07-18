@@ -6,7 +6,7 @@ import trashIcon from "../../images/trash.svg";
 import { useLocation } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function NewsCard({ loggedIn, card, onCardSave }) {
+function NewsCard({ loggedIn, card, onCardSave, onCardDelete }) {
   const location = useLocation();
   const currentUser = React.useContext(CurrentUserContext);
   const onMainPage = location.pathname === "/";
@@ -39,6 +39,9 @@ function NewsCard({ loggedIn, card, onCardSave }) {
     loggedIn && onCardSave(card);
     setIsMarked(true);
   }
+  function handleDeleteClick() {
+    onCardDelete(card._id);
+  }
   return (
     <article className="news-card">
       {!onMainPage && (
@@ -67,9 +70,21 @@ function NewsCard({ loggedIn, card, onCardSave }) {
           </div>
         </>
       ) : (
-        <button className="news-card__button button-style">
-          <img className="news-card__trash" src={trashIcon} alt="trash icon" />
-        </button>
+        <>
+          <button
+            onClick={handleDeleteClick}
+            className="news-card__button button-style news-card__button_disabled"
+          >
+            <img
+              className="news-card__trash"
+              src={trashIcon}
+              alt="trash icon"
+            />
+          </button>
+          <div className="news-card__reminder button-style">
+            <span>Remove from saved</span>
+          </div>
+        </>
       )}
       <img
         className="news-card__image"

@@ -11,7 +11,7 @@ function PopupWithForm({
   onClose,
   onOpen,
   handleFormSubmit,
-  signError
+  signError,
 }) {
   const [values, setValues] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);

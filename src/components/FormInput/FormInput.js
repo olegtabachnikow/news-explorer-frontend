@@ -1,21 +1,29 @@
 import React from "react";
 import "./FormInput.css";
 
-function FormInput({ type, name, placeholder, setIsValid, setValues, values, isOpen }) {
-  const [value, setValue] = React.useState('');
-  const [error, setError] = React.useState('');
+function FormInput({
+  type,
+  name,
+  placeholder,
+  setIsValid,
+  setValues,
+  values,
+  isOpen,
+}) {
+  const [value, setValue] = React.useState("");
+  const [error, setError] = React.useState("");
   React.useEffect(() => {
     if (isOpen) {
-      setValue('');
-      setError('');
+      setValue("");
+      setError("");
       setValues({});
-    }  
-  }, [isOpen, setValues])
+    }
+  }, [isOpen, setValues]);
   const handleChange = (e) => {
     setValue(e.target.value);
     setError(e.target.validationMessage);
     setIsValid(e.target.closest("form").checkValidity());
-    setValues({...values, [e.target.name]: e.target.value })
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   return (
