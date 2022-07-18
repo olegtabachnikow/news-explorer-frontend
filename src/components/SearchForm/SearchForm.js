@@ -13,8 +13,8 @@ function SearchForm({ onSearch }) {
     if (keyword === "") {
       setSearchFormPlaceholder("Please enter a keyword");
     }
-    onSearch(keyword);
-    console.log(keyword);
+    const keyWordData  = keyword[0].toUpperCase() + keyword.slice(1);
+    onSearch(keyWordData);
     setKeyword("");
   }
   return (

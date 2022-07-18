@@ -13,7 +13,14 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import RegisterResult from "../RegisterResult/RegisterResult";
 import FormInput from "../FormInput/FormInput";
 import newsApi from "../../utils/NewsApi";
-import { register, login, checkToken } from "../../utils/MainApi";
+import {
+  register,
+  login,
+  checkToken,
+  getArticles,
+  saveArticle,
+  deleteArticle,
+} from "../../utils/MainApi";
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -31,21 +38,29 @@ function App() {
   const [isCardListOpen, setIsCardListOpen] = React.useState(false);
   const [cardsCount, setCardsCount] = React.useState(3);
   const [showMoreButton, setShowMoreButton] = React.useState(true);
-  const [savedArticles, setSavedArticles] = React.useState([]);
   const [signError, setSignError] = React.useState("");
 
   const location = useLocation();
   React.useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    token && checkToken(token)
-    .then(res => {
-      if (res.user) {
-       setCurrentUser(res.user);
-       setLoggedIn(true);
-      }
-    })
-    .catch(err => console.log(err));
-  },[])
+    const token = localStorage.getItem("jwt");
+    token &&
+      checkToken(token)
+        .then((res) => {
+          if (res.user) {
+            setCurrentUser(res.user);
+            setLoggedIn(true);
+          }
+        })
+        .catch((err) => console.log(err));
+  }, []);
+  React.useEffect(() => {
+    loggedIn &&
+      getArticles()
+        .then((res) => {
+          setCurrentUser({ ...currentUser, articles: [...res] });
+        })
+        .catch((err) => console.log(err));
+  }, [loggedIn]);
   React.useEffect(() => {
     location.pathname === "/" ? setMainTheme(true) : setMainTheme(false);
   }, [location.pathname]);
@@ -61,7 +76,11 @@ function App() {
       ? setShowMoreButton(false)
       : setShowMoreButton(true);
   }, [cardsCount, articles]);
-
+  function removeArticle(id) {
+    deleteArticle(id)
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+  }
   function openBurger(boolean) {
     setIsBurgerPopupOpened(boolean);
   }
@@ -78,7 +97,9 @@ function App() {
     newsApi
       .getArticles(keyword)
       .then((res) => {
+        console.log(res);
         !res.articles.length && setSearchResult(false);
+        localStorage.setItem("keyword", keyword);
         localStorage.setItem("articles", JSON.stringify(res.articles));
         setArticles(res.articles);
       })
@@ -88,8 +109,20 @@ function App() {
         )
       );
   }
+  function addArticle(data) {
+    console.log(currentUser);
+    const keyword = localStorage.getItem("keyword");
+    saveArticle(keyword, { data })
+      .then((res) => {
+        setCurrentUser({
+          ...currentUser,
+          articles: [...currentUser.articles, res],
+        });
+      })
+      .catch((err) => console.log(err));
+  }
   function handleSignOut() {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem("jwt");
     setLoggedIn(false);
   }
   function openRegisterPopup(boolean) {
@@ -99,11 +132,12 @@ function App() {
     setIsRegisterPopupOpen(boolean);
   }
   function handleLogin(data) {
-    setSignError('');
+    setSignError("");
     login(data)
       .then((res) => {
         return res.json();
-      }).then(res => {
+      })
+      .then((res) => {
         if (res.message) {
           setSignError(res.message);
           return;
@@ -119,7 +153,8 @@ function App() {
     register(data)
       .then((res) => {
         return res.json();
-      }).then(res =>  {
+      })
+      .then((res) => {
         if (res.message) {
           setSignError(res.message);
           return;
@@ -180,14 +215,14 @@ function App() {
                 handleCount={handleCount}
                 showMoreButton={showMoreButton}
                 cardsCount={cardsCount}
+                onCardSave={addArticle}
+                onCardDelete={removeArticle}
               />
             }
           />
           <Route
             path="/saved-news"
-            element={
-              <SavedNews loggedIn={loggedIn} savedArticles={savedArticles} />
-            }
+            element={<SavedNews loggedIn={loggedIn} />}
           />
         </Routes>
         <Popup isOpen={isBurgerPopupOpened} onClose={closeAllPopups} />

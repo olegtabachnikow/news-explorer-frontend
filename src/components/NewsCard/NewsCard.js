@@ -4,10 +4,18 @@ import flagIcon from "../../images/flag-icon.svg";
 import flagIconMarked from "../../images/flag-icon-marked.svg";
 import trashIcon from "../../images/trash.svg";
 import { useLocation } from "react-router-dom";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function NewsCard({ loggedIn, card }) {
+function NewsCard({ loggedIn, card, onCardSave }) {
   const location = useLocation();
+  const currentUser = React.useContext(CurrentUserContext);
+  const onMainPage = location.pathname === "/";
   const [isMarked, setIsMarked] = React.useState(false);
+  React.useEffect(() => {
+    currentUser.articles &&
+      currentUser.articles.some((item) => item.title === card.title) &&
+      setIsMarked(true);
+  }, [currentUser, card.title]);
   function formatDate(date) {
     const dateArr = date.toString().slice(0, 10).split("-", 3);
     const monthNames = [
@@ -27,19 +35,22 @@ function NewsCard({ loggedIn, card }) {
     dateArr[1] = monthNames[parseInt(dateArr[1]) - 1];
     return `${dateArr[1]} ${dateArr[2]}, ${dateArr[0]}`;
   }
-  function handleMarkClick() {
-    loggedIn && setIsMarked((isMarked) => !isMarked);
+  function handleSaveClick() {
+    loggedIn && onCardSave(card);
+    setIsMarked(true);
   }
   return (
     <article className="news-card">
-      {location.pathname === "/saved-news" && (
-        <div className="news-card__keyword button-style">Doge</div>
+      {!onMainPage && (
+        <div className="news-card__keyword button-style">{card.keyword}</div>
       )}
-      {location.pathname === "/" ? (
+      {onMainPage ? (
         <>
           <button
-            onClick={handleMarkClick}
-            className={`news-card__button button-style ${!loggedIn && 'news-card__button_disabled'}`}
+            onClick={handleSaveClick}
+            className={`news-card__button button-style ${
+              !loggedIn && "news-card__button_disabled"
+            }`}
           >
             {!isMarked ? (
               <img className="news-card__flag" src={flagIcon} alt="flag icon" />
@@ -62,14 +73,20 @@ function NewsCard({ loggedIn, card }) {
       )}
       <img
         className="news-card__image"
-        src={card.urlToImage}
-        alt={card.source.name}
+        src={onMainPage ? card.urlToImage : card.image}
+        alt={onMainPage ? card.source.name : card.source}
       />
       <div className="news-card__info">
-        <span className="news-card__date">{formatDate(card.publishedAt)}</span>
+        <span className="news-card__date">
+          {onMainPage ? formatDate(card.publishedAt) : formatDate(card.date)}
+        </span>
         <h2 className="news-card__title">{card.title}</h2>
-        <p className="news-card__text">{card.description}</p>
-        <span className="news-card__source">{card.source.name}</span>
+        <p className="news-card__text">
+          {onMainPage ? card.description : card.text}
+        </p>
+        <span className="news-card__source">
+          {onMainPage ? card.source.name : card.source}
+        </span>
       </div>
     </article>
   );
