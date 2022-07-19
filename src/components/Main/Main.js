@@ -16,6 +16,7 @@ function Main({
   cardsCount,
   loggedIn,
   onCardSave,
+  onCardDelete
 }) {
   return (
     <section className="main">
@@ -44,6 +45,7 @@ function Main({
                 card={card}
                 loggedIn={loggedIn}
                 onCardSave={onCardSave}
+                onCardDelete={onCardDelete}
               />
             ))}
       </NewsCardList>

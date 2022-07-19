@@ -91,10 +91,10 @@ function App() {
     deleteArticle(id)
       .then(() => {
         const arr = currentUser.articles.filter((item) => item._id !== id);
-        setCurrentUser({
+        setCurrentUser(currentUser => ({
           ...currentUser,
           articles: arr,
-        });
+        }));
       })
       .catch((err) => console.log(err));
   }
@@ -129,10 +129,10 @@ function App() {
     const keyword = localStorage.getItem("keyword");
     saveArticle(keyword, { data })
       .then((res) => {
-        setCurrentUser({
+        setCurrentUser(currentUser => ({
           ...currentUser,
           articles: [...currentUser.articles, res],
-        });
+        }));
       })
       .catch((err) => console.log(err));
   }
@@ -233,6 +233,7 @@ function App() {
                 showMoreButton={showMoreButton}
                 cardsCount={cardsCount}
                 onCardSave={addArticle}
+                onCardDelete={removeArticle}
               />
             }
           />

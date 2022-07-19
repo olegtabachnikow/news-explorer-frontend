@@ -35,11 +35,15 @@ function NewsCard({ loggedIn, card, onCardSave, onCardDelete }) {
     dateArr[1] = monthNames[parseInt(dateArr[1]) - 1];
     return `${dateArr[1]} ${dateArr[2]}, ${dateArr[0]}`;
   }
-  function handleSaveClick() {
+  function handleClick() {
     if (loggedIn) {
-      onCardSave(card);
-      setIsMarked(true);
+      !isMarked ? onCardSave(card) : onCardDelete(getCardId());
+      setIsMarked(isMarked => (!isMarked));
     }
+  }
+  function getCardId() {
+    const currentSavedCard = currentUser.articles.find(item => card.title === item.title);
+    return currentSavedCard._id;
   }
   function handleDeleteClick() {
     onCardDelete(card._id);
@@ -52,7 +56,7 @@ function NewsCard({ loggedIn, card, onCardSave, onCardDelete }) {
       {onMainPage ? (
         <>
           <button
-            onClick={handleSaveClick}
+            onClick={handleClick}
             className={`news-card__button button-style ${
               !loggedIn && "news-card__button_disabled"
             }`}
