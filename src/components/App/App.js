@@ -36,7 +36,7 @@ function App() {
   const [searchResult, setSearchResult] = React.useState(true);
   const [resultRegisterPopupOpen, setResultRegisterPopupOpen] =
     React.useState(false);
-  const [hideHeader, setHideHeader] = React.useState(true);
+  const [hideHeader, setHideHeader] = React.useState(false);
   const [isCardListOpen, setIsCardListOpen] = React.useState(false);
   const [cardsCount, setCardsCount] = React.useState(3);
   const [showMoreButton, setShowMoreButton] = React.useState(true);
