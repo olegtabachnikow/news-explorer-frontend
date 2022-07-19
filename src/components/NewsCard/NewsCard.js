@@ -36,8 +36,10 @@ function NewsCard({ loggedIn, card, onCardSave, onCardDelete }) {
     return `${dateArr[1]} ${dateArr[2]}, ${dateArr[0]}`;
   }
   function handleSaveClick() {
-    loggedIn && onCardSave(card);
-    setIsMarked(true);
+    if (loggedIn) {
+      onCardSave(card);
+      setIsMarked(true);
+    }
   }
   function handleDeleteClick() {
     onCardDelete(card._id);
