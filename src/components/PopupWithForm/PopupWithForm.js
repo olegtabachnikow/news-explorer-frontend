@@ -21,7 +21,8 @@ function PopupWithForm({
   }
   return (
     <Popup isOpen={isOpen} onClose={onClose}>
-      <form className="form" type="submit" onSubmit={handleSubmit}>
+      <div className="form">
+      <form type="submit" onSubmit={handleSubmit}>
         <button onClick={onClose} className="form__close-button" type="button">
           <img
             className="form__close-icon"
@@ -53,6 +54,7 @@ function PopupWithForm({
           </button>
         </div>
       </form>
+      </div>
     </Popup>
   );
 }
