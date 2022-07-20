@@ -1,10 +1,20 @@
 .news-card-list {
   color: #1a1b22;
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 80px 7.2%;
   background-color: #f5f6f7;
   position: relative;
+}
+.news-card-list_opened {
+  display: flex;
+}
+.news-card-list__error {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+  text-align: center;
 }
 .news-card-list__container {
   display: flex;
@@ -38,7 +48,11 @@
   align-self: center;
   border: none;
   cursor: pointer;
+  display: none;
   transition: background-color 0.3s linear;
+}
+.news-card-list__button_active {
+  display: block;
 }
 .news-card-list__button:hover {
   background-color: #e8e8e8;
