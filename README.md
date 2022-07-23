@@ -1,4 +1,4 @@
-[Web application News Explorer](https://news-explorer-oleg.students.nomoredomainssbs.ru)
+[Web application News Explorer](https://news-explorer-eskel4ik.students.nomoredomainssbs.ru/)
 
 Application allow you to search latest news articles by any topics you want.
 Registered users can save any articles, they interested in.
