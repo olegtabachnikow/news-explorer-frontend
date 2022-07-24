@@ -35,7 +35,8 @@ function NewsCard({ loggedIn, card, onCardSave, onCardDelete }) {
     dateArr[1] = monthNames[parseInt(dateArr[1]) - 1];
     return `${dateArr[1]} ${dateArr[2]}, ${dateArr[0]}`;
   }
-  function handleClick() {
+  function handleClick(evt) {
+    evt.stopPropagation();
     if (loggedIn) {
       !isMarked ? onCardSave(card) : onCardDelete(getCardId());
       setIsMarked(isMarked => (!isMarked));
@@ -45,11 +46,12 @@ function NewsCard({ loggedIn, card, onCardSave, onCardDelete }) {
     const currentSavedCard = currentUser.articles.find(item => card.title === item.title);
     return currentSavedCard._id;
   }
-  function handleDeleteClick() {
+  function handleDeleteClick(evt) {
+    evt.stopPropagation();
     onCardDelete(card._id);
   }
   return (
-    <article className="news-card">
+    <article onClick={()=> window.open(`${onMainPage ? card.url : card.link}`, '_blank')} className="news-card">
       {!onMainPage && (
         <div className="news-card__keyword button-style">{card.keyword}</div>
       )}
