@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.news-explorer-eskel4ik.students.nomoredomainssbs.ru";
+const BASE_URL = "https://api.oleg-news-explorer.students.nomoredomainssbs.ru";
 function checkResponce(res) {
   if (res.ok) {
     return res.json();

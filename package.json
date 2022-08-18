@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && scp -r -i ~/.ssh/id_rsa ./build/* eskel4ik@news-explorer-eskel4ik.students.nomoredomainssbs.ru:/home/eskel4ik/frontend"
+    "deploy": "npm run build && scp -r -i ~/.ssh/id_ed25519 ./build/* eskelll4ik@34.173.96.245:/home/eskelll4ik/frontend"
   },
   "eslintConfig": {
     "extends": [
